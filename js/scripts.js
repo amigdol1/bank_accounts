@@ -3,9 +3,9 @@ function initialSignUp(name, deposit) {
   this.deposit = deposit;
 }
 
-function balance(new_deposit, withdraw) {
-  this.newDeposit = new_deposit;
-  this.withdraw = withdraw;
+initialSignUp.prototype.newAmount = function(newDeposit, withdraw) {
+  this.deposit += newDeposit;
+  this.deposit -= withdraw;
 }
 
 
@@ -22,12 +22,13 @@ $(document).ready(function() {
   $("button#final_button").click(function(){
     var inputNewDeposit = parseInt($("input#new_deposit").val());
     var inputWithdraw = parseInt($("input#withdraw").val());
-    // var newBalance = new balance(inputNewDeposit, inputWithdraw);
-    var endBalance = inputDeposit + inputNewDeposit - inputWithdraw;
+    var endBalance = newAccount.newAmount(inputNewDeposit, inputWithdraw);
 
-    $("#account_balance").append("<p>" + "Your new balance is: " + endBalance + "</p>");
+    $("#account_balance").append("<p>" + "Your new balance is: " + newAccount.deposit + "</p>");
     console.log(endBalance);
 
     });
   });
 });
+
+//
