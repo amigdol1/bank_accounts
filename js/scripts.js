@@ -8,7 +8,9 @@ function balance(new_deposit, withdraw) {
   this.withdraw = withdraw;
 }
 
+
 $(document).ready(function() {
+
   $("form#bank_account").submit(function(event){
     event.preventDefault();
     var inputName = $("input#name").val();
@@ -16,14 +18,16 @@ $(document).ready(function() {
     var newAccount = new initialSignUp(inputName, inputDeposit);
 
     console.log(newAccount);
-  });
 
-  $("form#deposit_withdraw").submit(function(event){
-      event.preventDefault();
-    var inputNewDeposit = parseInt($("input#deposit").val());
+  $("button#final_button").click(function(){
+    var inputNewDeposit = parseInt($("input#new_deposit").val());
     var inputWithdraw = parseInt($("input#withdraw").val());
-    var newBalance = new balance(inputNewDeposit, inputWithdraw);
+    // var newBalance = new balance(inputNewDeposit, inputWithdraw);
+    var endBalance = inputDeposit + inputNewDeposit - inputWithdraw;
 
-    console.log(newBalance);
+    $("#account_balance").append("<p>" + "Your new balance is: " + endBalance + "</p>");
+    console.log(endBalance);
+
+    });
   });
 });
